@@ -1,0 +1,12 @@
+{
+  "name": "3-fs-modules",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "strat": "node index"
+  }
+}

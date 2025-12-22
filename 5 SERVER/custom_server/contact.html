@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us | Construction Company</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+         /* header / nav */
+    header{background:#0f1724;color:white}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#ffb06b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+    .cta{background:white;color:var(--dark);padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+        .header {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        .container {
+            width: 85%;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info, .contact-form {
+            background: #fff;
+            padding: 35px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .contact-info h2,
+        .contact-form h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #222;
+        }
+
+        .contact-info p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .info-box {
+            margin-bottom: 20px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #111;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .contact-form button {
+            background: #111;
+            color: #fff;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">SC</div>
+      <div>
+        <div style="font-weight:800">Skyline Construction</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px">Since 2010 — Surat, Gujarat</div>
+      </div>
+    </div>
+
+   <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/projects">Projects</a>
+      <a href="/testimonials">Testimonials</a>
+      <a href="/contact">Contact</a>
+       
+     
+    </nav>
+
+  </div>
+</header>
+
+<main class="wrap">
+    <div class="header">
+        <h1>Contact Us</h1>
+        <p>Have a question? Need a quote? We're here to help!</p>
+    </div>
+    <div class="container">
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+
+            <div class="info-box">
+                <strong>📍 Address</strong>
+                <p>B-2008, Tirupati Textile Market, Ring Road, Surat</p>
+            </div>
+
+            <div class="info-box">
+                <strong>📞 Phone</strong>
+                <p>+91 9316708501</p>
+            </div>
+
+            <div class="info-box">
+                <strong>📧 Email</strong>
+                <p>info@yourcompany.com</p>
+            </div>
+
+            <div class="info-box">
+                <strong>⏰ Working Hours</strong>
+                <p>Mon – Sat : 9:00 AM – 7:00 PM</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Phone Number" required>
+                <textarea rows="6" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

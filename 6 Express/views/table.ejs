@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-section h1 {
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-btn {
+            margin: 0 2px;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .table thead {
+            background-color: #f8f9fa;
+        }
+
+        .btn-add-user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+
+        .btn-add-user:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        #formSection {
+            display: none;
+        }
+
+        .password-cell {
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header-section d-flex justify-content-between align-items-center">
+            <h1><i class="bi bi-people-fill me-2"></i>User Management System</h1>
+            <button class="btn btn-light btn-add-user" id="addUserBtn">
+                <i class="bi bi-plus-circle me-2"></i>Add User
+            </button>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-container" id="tableSection">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                        <!-- Users will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-container" id="formSection">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="formTitle">Add New User</h2>
+                <button class="btn btn-outline-secondary" id="closeFormBtn">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="userName" class="form-label">Name *</label>
+                    <input type="text" class="form-control" id="userName" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="userEmail" class="form-label">Email *</label>
+                    <input type="email" class="form-control" id="userEmail" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="userPassword" class="form-label">Password *</label>
+                    <input type="password" class="form-control" id="userPassword" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="userPhone" class="form-label">Phone *</label>
+                    <input type="tel" class="form-control" id="userPhone" required>
+                </div>
+
+                <div class="col-12">
+                    <label for="userAddress" class="form-label">Address *</label>
+                    <textarea class="form-control" id="userAddress" rows="3" required></textarea>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <button class="btn btn-primary me-2" id="submitBtn">
+                        <i class="bi bi-check-circle me-2"></i>
+                        <span id="submitBtnText">Add User</span>
+                    </button>
+                    <button class="btn btn-secondary" id="cancelBtn">
+                        <i class="bi bi-x-circle me-2"></i>Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // User data array
+        let users = [
+            {
+                id: 1,
+                name: 'John Doe',
+                email: 'john@example.com',
+                password: 'password123',
+                phone: '+1234567890',
+                address: '123 Main St, New York, NY'
+            },
+            {
+                id: 2,
+                name: 'Jane Smith',
+                email: 'jane@example.com',
+                password: 'securepass456',
+                phone: '+0987654321',
+                address: '456 Oak Ave, Los Angeles, CA'
+            },
+            {
+                id: 3,
+                name: 'Bob Johnson',
+                email: 'bob@example.com',
+                password: 'mypass789',
+                phone: '+1122334455',
+                address: '789 Pine Rd, Chicago, IL'
+            }
+        ];
+
+        let editingUserId = null;
+
+        // DOM Elements
+        const tableSection = document.getElementById('tableSection');
+        const formSection = document.getElementById('formSection');
+        const addUserBtn = document.getElementById('addUserBtn');
+        const closeFormBtn = document.getElementById('closeFormBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const formTitle = document.getElementById('formTitle');
+        const submitBtnText = document.getElementById('submitBtnText');
+        const userTableBody = document.getElementById('userTableBody');
+
+        // Form inputs
+        const userName = document.getElementById('userName');
+        const userEmail = document.getElementById('userEmail');
+        const userPassword = document.getElementById('userPassword');
+        const userPhone = document.getElementById('userPhone');
+        const userAddress = document.getElementById('userAddress');
+
+        // Initialize table
+        function renderTable() {
+            userTableBody.innerHTML = '';
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td class="password-cell">********</td>
+                    <td>${user.phone}</td>
+                    <td>${user.address}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning action-btn" onclick="editUser(${user.id})">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger action-btn" onclick="deleteUser(${user.id})">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                    </td>
+                `;
+                userTableBody.appendChild(row);
+            });
+        }
+
+        // Show form
+        function showForm() {
+            tableSection.style.display = 'none';
+            formSection.style.display = 'block';
+        }
+
+        // Hide form
+        function hideForm() {
+            tableSection.style.display = 'block';
+            formSection.style.display = 'none';
+            clearForm();
+        }
+
+        // Clear form
+        function clearForm() {
+            userName.value = '';
+            userEmail.value = '';
+            userPassword.value = '';
+            userPhone.value = '';
+            userAddress.value = '';
+            editingUserId = null;
+            formTitle.textContent = 'Add New User';
+            submitBtnText.textContent = 'Add User';
+        }
+
+        // Add user button click
+        addUserBtn.addEventListener('click', () => {
+            showForm();
+        });
+
+        // Close/Cancel form button clicks
+        closeFormBtn.addEventListener('click', hideForm);
+        cancelBtn.addEventListener('click', hideForm);
+
+        // Submit form
+        submitBtn.addEventListener('click', () => {
+            // Validation
+            if (!userName.value || !userEmail.value || !userPassword.value || 
+                !userPhone.value || !userAddress.value) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (editingUserId) {
+                // Update existing user
+                const userIndex = users.findIndex(u => u.id === editingUserId);
+                users[userIndex] = {
+                    id: editingUserId,
+                    name: userName.value,
+                    email: userEmail.value,
+                    password: userPassword.value,
+                    phone: userPhone.value,
+                    address: userAddress.value
+                };
+            } else {
+                // Add new user
+                const newUser = {
+                    id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1,
+                    name: userName.value,
+                    email: userEmail.value,
+                    password: userPassword.value,
+                    phone: userPhone.value,
+                    address: userAddress.value
+                };
+                users.push(newUser);
+            }
+
+            renderTable();
+            hideForm();
+        });
+
+        // Edit user
+        function editUser(id) {
+            const user = users.find(u => u.id === id);
+            if (user) {
+                editingUserId = id;
+                userName.value = user.name;
+                userEmail.value = user.email;
+                userPassword.value = user.password;
+                userPhone.value = user.phone;
+                userAddress.value = user.address;
+                formTitle.textContent = 'Edit User';
+                submitBtnText.textContent = 'Update User';
+                showForm();
+            }
+        }
+
+        // Delete user
+        function deleteUser(id) {
+            if (confirm('Are you sure you want to delete this user?')) {
+                users = users.filter(u => u.id !== id);
+                renderTable();
+            }
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>

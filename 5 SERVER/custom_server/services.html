@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Services | Construction Company</title>
+    <style>
+        :root{
+          --accent:#ff7a00;
+          --dark:#111218;
+          --muted:#6b7280;
+          --card:#ffffff;
+          --bg:#f3f4f6;
+          --radius:14px;
+          --max-width:1100px;
+          --container-padding:24px;
+          font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+        }
+
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--dark)}
+
+        .wrap{max-width:var(--max-width);margin:0 auto;padding:var(--container-padding)}
+
+        /* header / nav */
+        header{background:#0f1724;color:white}
+        .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#ffb06b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+        nav{display:flex;gap:18px;align-items:center}
+        nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+        .cta{background:white;color:var(--dark);padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 45px;
+            letter-spacing: 1px;
+        }
+
+        .services-section {
+            width: 85%;
+            margin: auto;
+            padding: 50px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
+        }
+
+        .service-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+            border: 1px solid #ddd;
+        }
+
+        .service-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-box h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .service-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">SC</div>
+      <div>
+        <div style="font-weight:800">Skyline Construction</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px">Since 2010 — Surat, Gujarat</div>
+      </div>
+    </div>
+
+  <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/projects">Projects</a>
+      <a href="/testimonials">Testimonials</a>
+      <a href="/contact">Contact</a>
+    
+     
+    </nav>
+
+  </div>
+</header>
+
+<main class="wrap">
+    <div class="header">
+        <h1>Our Services</h1>
+        <p>We deliver quality, commitment & excellence in every project.</p>
+    </div>
+
+    <div class="services-section">
+
+        <div class="service-box">
+            <h3>Residential Construction</h3>
+            <p>From modern homes to luxury villas, we build strong, safe and beautifully designed residences.</p>
+        </div>
+
+        <div class="service-box">
+            <h3>Commercial Construction</h3>
+            <p>We construct offices, showrooms, shops and commercial buildings with precision and durability.</p>
+        </div>
+
+        <div class="service-box">
+            <h3>Interior Designing</h3>
+            <p>Complete interior solutions including modular kitchen, false ceiling, flooring & more.</p>
+        </div>
+
+        <div class="service-box">
+            <h3>Renovation & Remodeling</h3>
+            <p>Give your old space a fresh new look with our expert renovation services.</p>
+        </div>
+
+        <div class="service-box">
+            <h3>Architectural Planning</h3>
+            <p>Professional architectural layouts, 3D elevation, Vastu planning and structural design.</p>
+        </div>
+
+        <div class="service-box">
+            <h3>Road & Civil Work</h3>
+            <p>We handle roads, drainage, boundary walls, and all types of civil engineering works.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

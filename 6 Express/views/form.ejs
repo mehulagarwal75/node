@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        input.invalid, textarea.invalid, select.invalid {
+            border-color: #e74c3c;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid #c3e6cb;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        <p class="subtitle">Fill out the form below to register</p>
+        
+        <form id="contactForm">
+            <input type="hidden" id="userId" name="userId">
+
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error" id="nameError">Please enter your name</span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error" id="emailError">Please enter a valid email</span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+                <span class="error" id="phoneError">Please enter a valid phone number</span>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address *</label>
+                <textarea id="address" name="address" required style="min-height: 80px;"></textarea>
+                <span class="error" id="addressError">Please enter your address</span>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            ✓ Registration successful! Your User ID: <strong id="displayUserId"></strong>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const userIdInput = document.getElementById('userId');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const addressInput = document.getElementById('address');
+        const successMessage = document.getElementById('successMessage');
+
+        // Generate unique User ID on page load
+        function generateUserId() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 10000);
+            return `USER${timestamp}${random}`;
+        }
+
+        // Set the User ID when page loads (hidden from user)
+        userIdInput.value = generateUserId();
+
+        // Email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Phone validation regex (basic)
+        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+
+        // Validation functions
+        function validateName() {
+            if (nameInput.value.trim() === '') {
+                showError(nameInput, 'nameError');
+                return false;
+            }
+            hideError(nameInput, 'nameError');
+            return true;
+        }
+
+        function validateEmail() {
+            if (!emailRegex.test(emailInput.value.trim())) {
+                showError(emailInput, 'emailError');
+                return false;
+            }
+            hideError(emailInput, 'emailError');
+            return true;
+        }
+
+        function validatePhone() {
+            if (phoneInput.value.trim() !== '' && !phoneRegex.test(phoneInput.value.trim())) {
+                showError(phoneInput, 'phoneError');
+                return false;
+            }
+            hideError(phoneInput, 'phoneError');
+            return true;
+        }
+
+        function validateAddress() {
+            if (addressInput.value.trim() === '') {
+                showError(addressInput, 'addressError');
+                return false;
+            }
+            hideError(addressInput, 'addressError');
+            return true;
+        }
+
+        function showError(input, errorId) {
+            input.classList.add('invalid');
+            document.getElementById(errorId).classList.add('show');
+        }
+
+        function hideError(input, errorId) {
+            input.classList.remove('invalid');
+            document.getElementById(errorId).classList.remove('show');
+        }
+
+        // Real-time validation
+        nameInput.addEventListener('blur', validateName);
+        emailInput.addEventListener('blur', validateEmail);
+        phoneInput.addEventListener('blur', validatePhone);
+        addressInput.addEventListener('blur', validateAddress);
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate all fields
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isPhoneValid = validatePhone();
+            const isAddressValid = validateAddress();
+
+            if (isNameValid && isEmailValid && isPhoneValid && isAddressValid) {
+                // Hide any existing success message
+                successMessage.classList.remove('show');
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    // Display the User ID in success message
+                    document.getElementById('displayUserId').textContent = userIdInput.value;
+                    successMessage.classList.add('show');
+                    
+                    // Reset form and regenerate new User ID for next submission
+                    form.reset();
+                    userIdInput.value = generateUserId();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

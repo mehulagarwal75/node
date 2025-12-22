@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Projects | Construction Company</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+         /* header / nav */
+    header{background:#0f1724;color:white}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#ffb06b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+    .cta{background:white;color:var(--dark);padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 45px;
+        }
+
+        .projects-section {
+            width: 90%;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-box {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            transition: 0.3s;
+        }
+
+        .project-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .project-box img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .project-content p {
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">SC</div>
+      <div>
+        <div style="font-weight:800">Skyline Construction</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px">Since 2010 — Surat, Gujarat</div>
+      </div>
+    </div>
+
+   <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/projects">Projects</a>
+      <a href="/testimonials">Testimonials</a>
+      <a href="/contact">Contact</a>
+   
+     
+    </nav>
+
+
+
+  </div>
+</header>
+
+<main class="wrap">
+    <div class="header">
+        <h1>Our Completed Projects</h1>
+        <p>Quality work that stands strong for years.</p>
+    </div>
+    <div class="projects-section">
+
+        <!-- Project 1 -->
+        <div class="project-box">
+            <img src="image/project1.jpg" alt="Project 1">
+            <div class="project-content">
+                <h3>Luxury Villa Construction</h3>
+                <p>Complete turnkey construction including architectural design & interiors.</p>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-box">
+            <img src="image/project2.jpg" alt="Project 2">
+            <div class="project-content">
+                <h3>Commercial Complex</h3>
+                <p>Modern commercial building with premium finishing & strong structure.</p>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-box">
+            <img src="image/project3.jpg" alt="Project 3">
+            <div class="project-content">
+                <h3>Home Interior Design</h3>
+                <p>Interior work including modular kitchen, lighting, wall design, and furnishing.</p>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-box">
+            <img src="image/project4.jpg" alt="Project 4">
+            <div class="project-content">
+                <h3>Renovation & Remodeling</h3>
+                <p>Old house transformed with modern architecture and premium materials.</p>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-box">
+            <img src="image/project5.jpg" alt="Project 5">
+            <div class="project-content">
+                <h3>Road & Civil Works</h3>
+                <p>High-quality civil work including road construction and drainage systems.</p>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-box">
+            <img src="image/project6.jpg" alt="Project 6">
+            <div class="project-content">
+                <h3>Apartment Building</h3>
+                <p>Multi-floor residential building constructed with complete safety standards.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

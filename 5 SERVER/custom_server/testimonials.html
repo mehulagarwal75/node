@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Testimonials | Construction Company</title>
+
+    <style>
+        :root{
+          --accent:#ff7a00;
+          --dark:#111218;
+          --muted:#6b7280;
+          --card:#ffffff;
+          --bg:#f3f4f6;
+          --radius:14px;
+          --max-width:1100px;
+          --container-padding:24px;
+          font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Noto Sans",sans-serif;
+        }
+
+        *{box-sizing:border-box}
+        body{margin:0;background:var(--bg);color:var(--dark)}
+
+        .wrap{max-width:var(--max-width);margin:0 auto;padding:var(--container-padding)}
+
+        /* header / nav */
+        header{background:#0f1724;color:white}
+        .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+        .brand{display:flex;align-items:center;gap:12px}
+        .logo{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#ffb06b);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+        nav{display:flex;gap:18px;align-items:center}
+        nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+        .cta{background:white;color:var(--dark);padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 45px;
+            margin: 0;
+        }
+
+        .testimonial-section {
+            width: 85%;
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .testimonial-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-box .quote {
+            font-size: 30px;
+            color: #111;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-box p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .client-info {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client-info img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #111;
+        }
+
+        .client-info h4 {
+            margin: 0;
+            font-size: 18px;
+            color: #111;
+        }
+
+        .client-info span {
+            font-size: 14px;
+            color: #666;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="logo">SC</div>
+      <div>
+        <div style="font-weight:800">Skyline Construction</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:2px">Since 2010 — Surat, Gujarat</div>
+      </div>
+    </div>
+
+    <nav aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="/services">Services</a>
+      <a href="/projects">Projects</a>
+      <a href="/testimonials">Testimonials</a>
+      <a href="/contact">Contact</a>
+  
+     
+    </nav>
+
+
+  </div>
+</header>
+
+<main class="wrap">
+    <div class="header">
+        <h1>What Our Clients Say</h1>
+        <p>Your trust is our biggest achievement.</p>
+    </div>
+
+    <div class="testimonial-section">
+
+        <!-- Testimonial 1 -->
+        <div class="testimonial-box">
+            <div class="quote">“</div>
+            <p>The quality of construction is excellent. The team completed our villa on time and with perfect finishing. Highly recommended!</p>
+
+            <div class="client-info">
+                <img src="image/client1.jpg" alt="Client 1">
+                <div>
+                    <h4>Rohit Sharma</h4>
+                    <span>Villa Owner, Surat</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-box">
+            <div class="quote">“</div>
+            <p>The best construction company to work with. They helped us with planning, design, and full commercial building development.</p>
+
+            <div class="client-info">
+                <img src="image/client2.jpg" alt="Client 2">
+                <div>
+                    <h4>Priya Patel</h4>
+                    <span>Business Owner, Ahmedabad</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-box">
+            <div class="quote">“</div>
+            <p>Our home renovation was done beautifully. The interior work is outstanding and modern. Very happy with the result!</p>
+
+            <div class="client-info">
+                <img src="image/client3.jpg" alt="Client 3">
+                <div>
+                    <h4>Vikas Mehta</h4>
+                    <span>Homeowner, Vadodara</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-box">
+            <div class="quote">“</div>
+            <p>Professional team, transparent pricing, and top-quality materials. They completed our apartment project efficiently.</p>
+
+            <div class="client-info">
+                <img src="image/client4.jpg" alt="Client 4">
+                <div>
+                    <h4>Heena Desai</h4>
+                    <span>Real Estate Developer</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
