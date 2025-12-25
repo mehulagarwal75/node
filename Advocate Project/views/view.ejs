@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Advocate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>body{background:#f8fafc; padding-top:50px;}</style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow border-0 rounded-4">
+                    <div class="card-body p-5">
+                        <h3 class="fw-bold mb-4 text-center">Register Advocate</h3>
+                        
+                        <form action="/addAdvocate" method="post">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small text-muted">PROFILE PHOTO URL</label>
+                                <input type="url" name="img" class="form-control bg-light" placeholder="Paste image link here (https://...)" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small text-muted">FULL NAME</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small text-muted">ROLE</label>
+                                <select name="role" class="form-select">
+                                    <option>Senior Advocate</option>
+                                    <option>Advocate on Record</option>
+                                    <option>Corporate Counsel</option>
+                                    <option>Criminal Defense</option>
+                                    <option>Legal Associate</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold small text-muted">PHONE</label>
+                                <input type="text" name="phone" class="form-control" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold small text-muted">ADDRESS</label>
+                                <textarea name="address" class="form-control" rows="2" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill fw-bold" style="background:#0f172a; border:none">
+                                SAVE RECORD
+                            </button>
+                            <a href="/" class="d-block text-center mt-3 text-decoration-none text-muted">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
