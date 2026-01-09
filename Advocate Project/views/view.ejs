@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <title>Add New Advocate</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>body{background:#f8fafc; padding-top:50px;}</style>
+    <style>
+ :root { 
+    --navy: #7f1d1d; /* Dark Red/Burgundy (Authoritative) */
+    --gold: #b45309; /* Dark Orange/Bronze (Readable against white) */
+    --bg:   #fff7ed; /* Warm Off-White */
+}
+        body { background-color: var(--bg); font-family: 'Inter', sans-serif; }
+        .hero { background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=1350&q=80'); background-size: cover; padding: 80px 0 100px; color: white; text-align: center; margin-bottom: 40px; }
+        .adv-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
+        .adv-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); border-color: var(--gold); }
+        .profile-pic { width: 100%; height: 220px; object-fit: cover; border-bottom: 3px solid var(--gold); background: #eee; }
+        .card-body-custom { padding: 20px; flex-grow: 1; }
+        .role-badge { font-size: 0.7rem; font-weight: 700; background: #f0f9ff; color: #0369a1; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; margin-bottom: 8px; display: inline-block; }
+        .info-row { display: flex; align-items: center; margin-top: 8px; font-size: 0.9rem; color: #64748b; }
+        .info-row i { width: 24px; color: var(--gold); margin-right: 5px; }
+        .card-actions { background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 10px 20px; display: flex; justify-content: space-between; }
+        .btn-action { text-decoration: none; font-weight: 600; font-size: 0.85rem; }
+        .search-container { margin-top: -70px; margin-bottom: 30px; position: relative; z-index: 10; }
+    </style>
 </head>
 <body>
     <div class="container">

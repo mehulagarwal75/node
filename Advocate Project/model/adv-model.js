@@ -21,7 +21,7 @@ const advocateSchema = new mongoose.Schema({
     img: {
          type: String,
          required: true
-         }
+         },
 });
 
 const Advocate = mongoose.model('Advocate', advocateSchema);

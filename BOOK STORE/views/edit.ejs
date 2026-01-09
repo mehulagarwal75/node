@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book | Book Store</title>
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .page-subtitle {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
+        
+        /* Form Card */
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+        }
+        
+        /* Form Groups */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #34495e;
+            font-size: 15px;
+        }
+        
+        .form-label::after {
+            content: ' *';
+            color: #e74c3c;
+        }
+        
+        .form-label.optional::after {
+            content: ' (optional)';
+            color: #7f8c8d;
+            font-weight: normal;
+            font-size: 14px;
+        }
+        
+        /* Form Controls */
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e6ed;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .form-control::placeholder {
+            color: #a0aec0;
+        }
+        
+        /* Current Image Section */
+        .current-image-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px dashed #dee2e6;
+        }
+        
+        .current-image-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #495057;
+        }
+        
+        .current-image-container {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .current-image {
+            max-height: 200px;
+            max-width: 100%;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9ecef;
+        }
+        
+        .image-filename {
+            display: block;
+            margin-top: 12px;
+            color: #6c757d;
+            font-size: 14px;
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        /* File Input */
+        .file-input-wrapper {
+            position: relative;
+            margin-top: 10px;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 14px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            text-align: center;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-input-label:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        .file-input-label i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+        
+        .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+        }
+        
+        /* Button Group */
+        .button-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9, #2573a7);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #495057;
+            border: 2px solid #dee2e6;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .form-card {
+                padding: 30px 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .form-card {
+                padding: 25px 15px;
+            }
+            
+            .current-image-section {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">✏️ Edit Book</h1>
+            <p class="page-subtitle">Update the details of "<%= book.book_name %>"</p>
+        </div>
+        
+        <div class="form-card">
+            <form action="/update/<%= book._id %>" method="post" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Book Title</label>
+                        <input type="text" 
+                               name="book_name" 
+                               class="form-control" 
+                               value="<%= book.book_name %>" 
+                               required 
+                               placeholder="Enter book title">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Author</label>
+                        <input type="text" 
+                               name="book_author" 
+                               class="form-control" 
+                               value="<%= book.book_author %>" 
+                               required 
+                               placeholder="Author name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Price ($)</label>
+                        <input type="number" 
+                               name="book_price" 
+                               class="form-control" 
+                               value="<%= book.book_price %>" 
+                               step="0.01" 
+                               min="0" 
+                               required 
+                               placeholder="0.00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Language</label>
+                        <input type="text" 
+                               name="book_lang" 
+                               class="form-control" 
+                               value="<%= book.book_lang %>" 
+                               required 
+                               placeholder="e.g., English, Spanish">
+                    </div>
+                </div>
+                
+                <!-- Current Image -->
+                <div class="current-image-section">
+                    <div class="current-image-header">
+                        <span>📷</span>
+                        <h3>Current Cover Image</h3>
+                    </div>
+                    <div class="current-image-container">
+                        <img src="/uploads/<%= book.book_image %>" 
+                             class="current-image" 
+                             alt="Current book cover">
+                        <span class="image-filename"><%= book.book_image %></span>
+                    </div>
+                </div>
+                
+                <!-- New Image Upload -->
+                <div class="form-group full-width">
+                    <label class="form-label optional">Change Cover Image</label>
+                    <div class="file-input-wrapper">
+                        <label class="file-input-label">
+                            <span>📁 Click to upload new image (optional)</span>
+                            <input type="file" 
+                                   name="book_image" 
+                                   class="file-input" 
+                                   accept="image/*"
+                                   onchange="document.getElementById('newFileName').textContent = this.files[0]?.name || 'No new file selected'">
+                        </label>
+                    </div>
+                    <small id="newFileName" style="display: block; margin-top: 8px; color: #6c757d;">
+                        No new file selected
+                    </small>
+                </div>
+                
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <span>💾</span> Update Book
+                    </button>
+                    <a href="/" class="btn btn-secondary">
+                        <span>←</span> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Update filename display for file input
+        document.querySelector('input[name="book_image"]').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No new file selected';
+            document.getElementById('newFileName').textContent = fileName;
+        });
+    </script>
+</body>
+</html>
