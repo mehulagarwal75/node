@@ -4,7 +4,7 @@ const path = require('path');
 const connectDB = require('./config/db.config'); // Import your DB connection
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 // Middleware
 app.set('view engine', 'ejs');
