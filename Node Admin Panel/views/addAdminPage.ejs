@@ -1,0 +1,140 @@
+<%- include('header') %>
+
+    <div class="page-title">
+        <div class="row">
+            <div class="col-md-6 col-12">
+                <h3>Form Layout</h3>
+                <p class="text-subtitle text-muted">Multiple form layout you can use</p>
+            </div>
+            <div class="col-md-6 col-12 text-md-end">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-md-end">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Form Layout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="card-content">
+            <div class="card-body">
+                <form method="post" action="/insertAdmin" enctype="multipart/form-data">
+                    <div class="row">
+
+                        <!-- First Name -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="fname" placeholder="First Name">
+                            </div>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6 col-6">
+                            <label>Email</label>
+                            <div class="form-group input-group mb-3">
+                                <input type="email" class="form-control" name="email" placeholder="Email Here">
+                                 <span class="input-group-text">@example.com</span>
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-4 mb-1">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Addon to right"
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <span class="input-group-text" id="basic-addon2">@example.com</span>
+                            </div>
+                        </div> -->
+
+                        <!-- Password -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Password Here">
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Contact No</label>
+                                <input type="text" class="form-control" name="phone" placeholder="Contact No Here">
+                            </div>
+                        </div>
+
+                        <!-- City -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>City</label>
+                                <select class="form-control" name="city">
+                                    <option>Select</option>
+                                    <option>Surat</option>
+                                    <option>Baroda</option>
+                                    <option>Navsari</option>
+                                    <option>Rajkot</option>
+                                    <option>Mumbai</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <div>
+                                    <input type="radio" name="gender" value="Male"> Male
+                                    <input type="radio" name="gender" value="Female" class="ms-3"> Female
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hobby -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Hobby</label>
+                                <div>
+                                    <% ["Reading","Playing","movie","travelling","Other"].forEach(hobby=>{ %>
+                                        <input type="checkbox" class="ms-3" name="hobby[]" value="<%= hobby %>">
+                                        <%= hobby %>
+                                            <% }) %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Image -->
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <input type="file" class="form-control" name="profile_image">
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>About</label>
+                                <textarea class="form-control" name="about" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12 text-end">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>

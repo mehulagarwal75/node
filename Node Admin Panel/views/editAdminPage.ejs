@@ -1,0 +1,127 @@
+<%- include('header') %>
+
+<div class="page-wrapper">
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Edit Admin</h4>
+
+                <form method="post" action="/editAdmin/<%= singleAdmin.id %>" enctype="multipart/form-data">
+                    <div class="row">
+
+                        <!-- First Name -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control" name="fname"
+                                    value="<%= singleAdmin.fname %>">
+                            </div>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" name="lname"
+                                    value="<%= singleAdmin.lname %>">
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email"
+                                    value="<%= singleAdmin.email %>">
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" class="form-control" name="password"
+                                    value="<%= singleAdmin.password %>">
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Contact No</label>
+                                <input type="text" class="form-control" name="phone"
+                                    value="<%= singleAdmin.phone %>">
+                            </div>
+                        </div>
+
+                        <!-- City -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>City</label>
+                                <select class="form-control" name="city">
+                                    <%["Surat","Baroda","Navsari","Rajkot","Mubai"].forEach(city=>{ %>
+                                        <option value="<%= city %>"
+                                            <% if(singleAdmin.city === city){ %> selected <% } %>>
+                                            <%= city %>
+                                        </option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label>Gender</label><br>
+                                <input type="radio" name="gender" value="Male"
+                                    <% if(singleAdmin.gender==='Male'){ %> checked <% } %>> Male
+                                <input type="radio" name="gender" value="Female" class="ms-3"
+                                    <% if(singleAdmin.gender==='Female'){ %> checked <% } %>> Female
+                            </div>
+                        </div>
+
+                        <!-- Hobby -->
+                        <div class="col-md-6 col-12 ">
+                            <div class="form-group">
+                                <label>Hobby</label><br>
+                                <% ["Reading","Playing","movie","travelling","Other"].forEach(hobby=>{ %>
+                                    <input type="checkbox" name="hobby[]" value="<%= hobby %>"
+                                        <% if(singleAdmin.hobby.includes(hobby)){ %> checked <% } %>>
+                                    <%= hobby %>
+                                <% }) %>
+                            </div>
+                        </div>
+
+                        <!-- About -->
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>About</label>
+                                <textarea class="form-control" name="about"
+                                    rows="3"><%= singleAdmin.about %></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Profile Image -->
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Profile Image</label><br>
+                                <img src="../<%= singleAdmin.profile_image %>" height="60" class="mb-2">
+                                <input type="file" name="profile_image" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12 text-end mt-3">
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%- include('footer') %>

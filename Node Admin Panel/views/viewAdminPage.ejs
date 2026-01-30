@@ -1,0 +1,158 @@
+<%- include('header') %>
+
+    <style>
+        .grid-page {
+            padding: 30px;
+            background: #f5f6fa;
+            min-height: 100vh;
+        }
+
+        .admin-card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e5ec;
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .admin-card:hover {
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .admin-img {
+            width: 100%;
+            height: 300px;
+            /* same height for all */
+            object-fit: cover;
+            /* crop but no stretch */
+            object-position: top center;
+            /* face upar se cut na ho */
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            background: #f1f1f1;
+        }
+
+        .admin-body {
+            padding: 18px;
+            font-size: 14px;
+        }
+
+        .admin-body h5 {
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .admin-detail {
+            margin-bottom: 6px;
+        }
+
+        .admin-detail span {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .admin-actions {
+            border-top: 1px solid #eee;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .btn-edit {
+            border: 1px solid #ff9800;
+            color: #ff9800;
+            padding: 10px 22px;
+            border-radius: 5px;
+            font-size: 13px;
+            margin-right: 6px;
+            text-decoration: none;
+        }
+
+        .btn-edit:hover {
+            background: #ff9800;
+            color: #fff;
+        }
+
+        .btn-delete {
+            border: 1px solid #e53935;
+            color: #e53935;
+            padding: 10px 22px;
+            border-radius: 5px;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .btn-delete:hover {
+            background: #e53935;
+            color: #fff;
+        }
+    </style>
+
+    <div class="grid-page">
+        <h4 class="mb-4 fw-bold">All Admin (Grid View)</h4>
+
+        <div class="row">
+
+            <% allAdmin.forEach((admin, index)=> { %>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="admin-card">
+
+                        <!-- Image -->
+                        <img src="<%= admin.profile_image %>" class="admin-img" alt="Admin Image">
+
+                        <!-- Details -->
+                        <div class="admin-body">
+
+                            <h5>
+                                <%= admin.fname %>
+                                    <%= admin.lname %>
+                            </h5>
+
+                            <div class="admin-detail"><span>Email:</span>
+                                <%= admin.email %>
+                            </div>
+                            <div class="admin-detail"><span>Phone:</span>
+                                <%= admin.phone %>
+                            </div>
+                            <div class="admin-detail"><span>Gender:</span>
+                                <%= admin.gender %>
+                            </div>
+                            <div class="admin-detail"><span>City:</span>
+                                <%= admin.city %>
+                            </div>
+                            <div class="admin-detail"><span>Hobby:</span>
+                                <%= admin.hobby %>
+                            </div>
+
+                            <div class="admin-detail mt-2">
+                                <span>About:</span><br>
+                                <%= admin.about %>
+                            </div>
+
+                        </div>
+
+                        <!-- Actions -->
+                        <% if(admin.email !=="itzmekrushik@gmail.com") {%>
+                            <div class="admin-actions">
+                                    <a href="/editAdmin/<%= admin.id %>" class="btn-edit">Edit</a>
+
+                                    <a href="/deleteAdmin?adminId=<%= admin.id %>" class="btn-delete"
+                                        onclick="return confirm('Delete this admin?')">
+                                        Delete
+                                    </a>
+                                </div>
+                            <% }%>
+
+                                
+
+                    </div>
+                </div>
+
+                <% }) %>
+
+        </div>
+    </div>
+
+    <%- include('footer') %>

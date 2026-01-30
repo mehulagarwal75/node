@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* CARD */
+        .otp-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--white);
+            border-radius: 18px;
+            padding: 38px;
+            box-shadow: 0 25px 60px rgba(79, 70, 229, .15);
+        }
+
+        /* HEADER */
+        .otp-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .otp-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 18px;
+            background: linear-gradient(135deg, #6366f1, #4338ca);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, .35);
+        }
+
+        .otp-icon i {
+            color: #fff;
+            font-size: 26px;
+        }
+
+        .otp-header h2 {
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .otp-header p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* OTP INPUTS */
+        .otp-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin: 26px 0 30px;
+        }
+
+        .otp-inputs input {
+            width: 52px;
+            height: 58px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background: var(--light);
+            transition: .25s;
+        }
+
+        .otp-inputs input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, .15);
+        }
+
+        /* BUTTON */
+        .verify-btn {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6366f1, #4338ca);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, .35);
+        }
+
+        /* RESEND */
+        .resend {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .resend a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .resend a:hover {
+            text-decoration: underline;
+        }
+
+        /* MOBILE */
+        @media(max-width:480px) {
+            .otp-inputs input {
+                width: 44px;
+                height: 52px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="otp-card">
+        <div class="otp-header">
+            <div class="otp-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2>OTP Verification</h2>
+            <p>Enter the 6-digit code sent to your email</p>
+        </div>
+
+        <form method="post" action="/otpverify">
+            <!-- OTP BOXES -->
+            <div class="otp-inputs">
+                <input type="text" maxlength="1" inputmode="numeric">
+                <input type="text" maxlength="1" inputmode="numeric">
+                <input type="text" maxlength="1" inputmode="numeric">
+                <input type="text" maxlength="1" inputmode="numeric">
+                <input type="text" maxlength="1" inputmode="numeric">
+                <input type="text" maxlength="1" inputmode="numeric">
+            </div>
+
+            <!-- FINAL OTP VALUE -->
+            <input type="hidden" name="adminotp" id="otpValue">
+
+            <button class="verify-btn">Verify OTP</button>
+        </form>
+
+        <div class="resend">
+            Didn’t receive OTP?
+            <a href="/resend-otp">Resend</a>
+        </div>
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll(".otp-inputs input");
+        const otpHidden = document.getElementById("otpValue");
+
+        inputs.forEach((input, index) => {
+            input.addEventListener("input", () => {
+                input.value = input.value.replace(/[^0-9]/g, "");
+                if (input.value && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+                updateOtp();
+            });
+
+            input.addEventListener("keydown", e => {
+                if (e.key === "Backspace" && !input.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        function updateOtp() {
+            otpHidden.value = [...inputs].map(i => i.value).join("");
+        }
+    </script>
+
+</body>
+
+</html>
