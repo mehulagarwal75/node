@@ -1,0 +1,13 @@
+first name
+last name
+email
+password
+contact no
+gender
+hobby
+city
+about
+profile image
+
+
+

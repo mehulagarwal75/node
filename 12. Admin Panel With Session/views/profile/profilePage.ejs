@@ -1,0 +1,57 @@
+<%- include("../header") %>
+<div class="page-wrapper">
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">Admin Profile</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-hover">
+                    <div class="el-card-item pb-3">
+                        <div class="el-card-avatar el-overlay-1 text-center pt-4">
+                            <img src="<%= admin.profile_image %>" alt="user" class="rounded-circle" width="150" height="150" style="object-fit: cover; border: 3px solid #eee;">
+                        </div>
+                        <div class="el-card-content text-center mt-3 px-3">
+                            <h3 class="m-b-0 text-dark font-bold">
+                                <%= admin.fname %> <%= admin.lname %>
+                            </h3>
+                            <p class="text-muted"><%= admin.email %></p>
+                            
+                            <hr>
+
+                            <div class="text-left mt-3">
+                                <div class="mb-2"><strong><i class="mdi mdi-phone"></i> Phone:</strong> <span><%= admin.phone %></span></div>
+                                <div class="mb-2"><strong><i class="mdi mdi-gender-transgender"></i> Gender:</strong> <span><%= admin.gender %></span></div>
+                                <div class="mb-2"><strong><i class="mdi mdi-bike"></i> Hobby:</strong> <span><%= admin.hobby %></span></div>
+                                <div class="mb-2"><strong><i class="mdi mdi-city"></i> City:</strong> <span><%= admin.city %></span></div>
+                                <div class="mb-2"><strong><i class="mdi mdi-information-outline"></i> About:</strong> 
+                                    <p class="text-muted"><%= admin.about %></p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 mb-3">
+                                <a href="/editAdmin/<%= admin.id %>" class="btn btn-info btn-block shadow-sm">
+                                    <i class="mdi mdi-account-edit"></i> Edit Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include("../footer") %>

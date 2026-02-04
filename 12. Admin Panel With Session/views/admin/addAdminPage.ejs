@@ -1,0 +1,55 @@
+<%- include('../header') %>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="card shadow" style="border-radius: 12px; border-top: 5px solid #764ba2;">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-4">Register New Administrator</h4>
+                        <form action="/addAdmin" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>First Name</label>
+                                        <input type="text" name="fname" class="form-control rounded-pill" placeholder="Enter First Name">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>Email Address</label>
+                                        <input type="email" name="email" class="form-control rounded-pill" placeholder="email@jeen.com">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>Phone Number</label>
+                                        <input type="text" name="phone" class="form-control rounded-pill" placeholder="+91 XXXX">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label>Last Name</label>
+                                        <input type="text" name="lname" class="form-control rounded-pill" placeholder="Enter Last Name">
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>Select Gender</label>
+                                        <select name="gender" class="form-control rounded-pill">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label>Profile Photo</label>
+                                        <div class="custom-file border p-1 rounded-pill bg-light text-center">
+                                            <input type="file" name="profile_image" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3 text-center">
+                                <button type="submit" class="btn btn-lg px-5 text-white" style="background: #764ba2; border-radius: 50px;">CREATE ADMIN</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../footer') %>

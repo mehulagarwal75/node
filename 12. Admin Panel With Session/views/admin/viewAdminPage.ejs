@@ -1,0 +1,43 @@
+<%- include('../header') %>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="card shadow-sm" style="border-radius: 15px;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="card-title">Active Administrators</h4>
+                    <a href="/addAdminPage" class="btn btn-success rounded-pill">+ Add New</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% adminList.forEach((data) => { %>
+                            <tr>
+                                <td>
+                                    <img src="<%= data.profile_image %>" class="rounded-circle shadow-sm" width="45" height="45" style="object-fit: cover;">
+                                </td>
+                                <td class="font-bold"><%= data.fname %> <%= data.lname %></td>
+                                <td><%= data.email %></td>
+                                <td><span class="badge badge-pill badge-info">Admin</span></td>
+                                <td>
+                                    <a href="/editAdmin/<%= data.id %>" class="btn btn-sm btn-outline-warning mx-1"><i class="mdi mdi-pencil"></i></a>
+                                    <a href="/deleteAdmin?adminId=<%= data.id %>" class="btn btn-sm btn-outline-danger mx-1" onclick="return confirm('Are you sure?')"><i class="mdi mdi-delete"></i></a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../footer') %>

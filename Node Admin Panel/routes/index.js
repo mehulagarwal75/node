@@ -1,78 +1,51 @@
 const express = require('express');
-const multer = require('multer');
+const passport = require('passport');
 
-const {
-    loginPage,
-    checkLogin,
-    profilePage,
-    logout,
-    changePasswordPage,
-    changePassword,
-    dashboardPage,
-    addAdminPage,
-    viewAdminPage,
-    insertAdmin,
-    deleteAdmin,
-    editAdminPage,
-    updateAdmin,
-    verifyEmail,
-    otpPage,
-    newPasswordPage,
-    changeNewPassword,
-    otpVerify
-} = require('../controllers/admin_controller');
+const { dashboardPage, addAdminPage, viewAdminPage, insertAdmin, deleteAdmin, editAdminPage, updateAdmin, loginPage, forgotPasswordPage, checkLogin, logout, changePasswordPage, changePassword, profilePage, verifyEmail, OTPPage, OTPVerify, newPasswordPage, changeNewPassword } = require('../controllers/admin.controller');
+const upload = require('../middleware/multer');
 
 const route = express.Router();
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "uploads/admin/");
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + "-" + file.originalname);
-    }
-});
+// Auth
+route.get('/', passport.checkAuthIsNotDone, loginPage);
+route.post('/login', passport.checkAuthIsNotDone, passport.authenticate("localAuth", {
+    failureRedirect: "/"
+}), checkLogin);
 
-const upload = multer({ storage });
-
-// Login Page
-route.get('/', loginPage);
-route.post('/login', checkLogin);
-
-// Profile-Page
-route.get('/profile', profilePage);
-
-// Logout - Admin
-route.get('/logout', logout);
-
-//change- password
-route.get('/change-password', changePasswordPage);
-route.post('/change-password', changePassword);
+// change password
+route.get('/change-password', passport.checkAuthIsDone, changePasswordPage);
+route.post('/change-password', passport.checkAuthIsDone, changePassword);
 
 // forgot password
-route.post('/verify-email', verifyEmail);
+route.get('/forgot-password', passport.checkAuthIsNotDone, forgotPasswordPage);
+route.post('/verify-email', passport.checkAuthIsNotDone, verifyEmail);
 
-//otp page
-route.get('/otppage', otpPage);
-route.post('/otpverify', otpVerify);
+// OTP Page
+route.get('/otp-page', passport.checkAuthIsNotDone, OTPPage);
+route.post('/otp-verify', passport.checkAuthIsNotDone, OTPVerify);
 
 // New Password Page
-route.get('/newPasswordPage', newPasswordPage);
-route.post('/changeNewPassword', changeNewPassword);
+route.get('/newPasswordPage', passport.checkAuthIsNotDone, newPasswordPage);
+route.post('/change-new-password', passport.checkAuthIsNotDone, changeNewPassword);
 
-// Dashboard
-route.get('/dashboard', dashboardPage);
+// Profile
+route.get('/profile', passport.checkAuthIsDone, profilePage);
 
-// Admin Management
-route.get('/addAdminPage', addAdminPage);
-route.get('/viewAdminPage', viewAdminPage);
+// logout
+route.get('/logout', passport.checkAuthIsDone, logout);
+
+route.get('/dashboard', passport.checkAuthIsDone, dashboardPage);
+
+route.get('/addAdminPage', passport.checkAuthIsDone, addAdminPage);
+route.get('/viewAdminPage', passport.checkAuthIsDone, viewAdminPage);
 
 // Insert Admin
-route.post('/insertAdmin', upload.single('profile_image'), insertAdmin);
-route.get('/deleteAdmin', deleteAdmin);
+route.post('/insertAdmin', passport.checkAuthIsDone, upload.single('profile_image'), insertAdmin);
 
-// Edit Admin Page & Update Admin
-route.get('/editAdmin/:adminId', editAdminPage);
-route.post('/editAdmin/:adminId', upload.single('profile_image'), updateAdmin);
+// Delete Admin
+route.get('/deleteAdmin', passport.checkAuthIsDone, deleteAdmin);
 
+// Edit Admin
+route.get('/editAdmin/:adminId', passport.checkAuthIsDone, editAdminPage);
+route.post('/editAdmin/:adminId', passport.checkAuthIsDone, upload.single('profile_image'), updateAdmin);
 module.exports = route;

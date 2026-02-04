@@ -1,0 +1,274 @@
+/* Custom Unique CSS for Admin Panel */
+
+/* Color Scheme: Purple and Green Theme */
+:root {
+    --primary-color: #6a1b9a;
+    --secondary-color: #4caf50;
+    --accent-color: #ff9800;
+    --dark-color: #212121;
+    --light-color: #f5f5f5;
+    --border-color: #e0e0e0;
+}
+
+/* Body and General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8eaf6 100%);
+    color: var(--dark-color);
+}
+
+/* Main Wrapper */
+#main-wrapper {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8eaf6 100%);
+}
+
+/* Header Styles */
+.topbar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #8e24aa 100%) !important;
+    box-shadow: 0 4px 20px rgba(106, 27, 154, 0.3);
+}
+
+.navbar-brand .logo-text img {
+    filter: brightness(0) invert(1);
+}
+
+.navbar-brand .logo-icon img {
+    filter: brightness(0) invert(1);
+}
+
+/* Sidebar Styles */
+.left-sidebar {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%) !important;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar-nav .sidebar-item .sidebar-link {
+    color: var(--dark-color) !important;
+    border-radius: 8px;
+    margin: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-nav .sidebar-item .sidebar-link:hover {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    color: white !important;
+    transform: translateX(5px);
+}
+
+.sidebar-nav .sidebar-item.active .sidebar-link {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    color: white !important;
+}
+
+/* Page Wrapper */
+.page-wrapper {
+    background: transparent;
+}
+
+/* Breadcrumb */
+.page-breadcrumb {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.page-breadcrumb .breadcrumb {
+    background: transparent;
+    font-weight: 500;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    color: white !important;
+    border-radius: 15px 15px 0 0 !important;
+    border: none;
+}
+
+.card-body {
+    background: #ffffff;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #8e24aa 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(106, 27, 154, 0.4) !important;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #66bb6a 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4) !important;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ffb74d 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4) !important;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #f44336 0%, #e57373 100%) !important;
+    border: none !important;
+    border-radius: 25px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4) !important;
+}
+
+/* Form Elements */
+.form-control {
+    border: 2px solid var(--border-color) !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(106, 27, 154, 0.25) !important;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Table Styles */
+.table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.table thead th {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background: #f8f9fa !important;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}
+
+/* Dashboard Cards */
+.bg-cyan {
+    background: linear-gradient(135deg, #00bcd4 0%, #26c6da 100%) !important;
+}
+
+.bg-success {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, #66bb6a 100%) !important;
+}
+
+.bg-warning {
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ffb74d 100%) !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, #f44336 0%, #e57373 100%) !important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg, #2196f3 0%, #64b5f6 100%) !important;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--dark-color) 0%, #424242 100%) !important;
+    color: white !important;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Preloader */
+.preloader {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-breadcrumb {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .card {
+        margin: 10px 0;
+    }
+
+    .sidebar-nav .sidebar-item .sidebar-link {
+        margin: 2px 5px;
+    }
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+}

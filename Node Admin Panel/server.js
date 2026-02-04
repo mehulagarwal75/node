@@ -3,19 +3,40 @@ const path = require('path');
 require('./config/db.config');
 
 const cookieparser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
+const { setFlash } = require('./middleware/connectflash');
+
+require('./middleware/passport.local');
 
 const app = express();
 
 const PORT = 8080;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieparser());
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+app.use(cookieparser());
+
+app.use(session({
+    name: "AdminSession",
+    secret: "AdminPanel@45#63",
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    }
+}));
+
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.currentAdmin);
+app.use(setFlash);
 
 app.use('/', require('./routes/'));
 
