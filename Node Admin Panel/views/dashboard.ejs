@@ -3,101 +3,68 @@
     <div class="page-wrapper">
         <div class="page-breadcrumb">
             <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <% if(locals.flash.success !="" && locals.flash.success.length> 0) {%>
-                        <div class="alert alert-success">
-                            <%= locals.flash.success %>
-                        </div>
-                        <% } %>
-                            <h4 class="page-title">Dashboard</h4>
-                            <div class="ml-auto text-right">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                    </ol>
-                                </nav>
-                            </div>
+                <div class="col-12">
+                    <h3 class="page-title"><i class="mdi mdi-home"></i> Dashboard</h3>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
+        
         <div class="container-fluid">
-            <!-- ============================================================== -->
-            <!-- Sales Cards  -->
-            <!-- ============================================================== -->
+            <% if(locals.flash && locals.flash.success && locals.flash.success.length > 0) {%>
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 10px; border: none;">
+                    <strong><i class="mdi mdi-check-circle"></i> Success!</strong> <%= locals.flash.success %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+
+            <!-- Quick Action Cards -->
             <div class="row">
                 <!-- Column -->
-                <div class="col-md-6 col-lg-2 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-cyan text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-view-dashboard"></i></h1>
-                            <h6 class="text-white">Dashboard</h6>
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card shadow-sm" style="border-radius: 15px; border: none; overflow: hidden; cursor: pointer; transition: all 0.3s;">
+                        <div class="box text-center p-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <h1 class="font-light mb-3"><i class="mdi mdi-account-multiple"></i></h1>
+                            <h5>Administrators</h5>
+                            <p class="mb-0">Manage your team</p>
                         </div>
                     </div>
                 </div>
+
                 <!-- Column -->
-                <div class="col-md-6 col-lg-4 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-success text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-chart-areaspline"></i></h1>
-                            <h6 class="text-white">Charts</h6>
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card shadow-sm" style="border-radius: 15px; border: none; overflow: hidden; cursor: pointer; transition: all 0.3s;">
+                        <div class="box text-center p-4" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                            <h1 class="font-light mb-3"><i class="mdi mdi-folder-multiple"></i></h1>
+                            <h5>Categories</h5>
+                            <p class="mb-0">Manage categories</p>
                         </div>
                     </div>
                 </div>
+
                 <!-- Column -->
-                <div class="col-md-6 col-lg-2 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-warning text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-collage"></i></h1>
-                            <h6 class="text-white">Widgets</h6>
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card shadow-sm" style="border-radius: 15px; border: none; overflow: hidden; cursor: pointer; transition: all 0.3s;">
+                        <div class="box text-center p-4" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                            <h1 class="font-light mb-3"><i class="mdi mdi-tag-multiple"></i></h1>
+                            <h5>Sub Categories</h5>
+                            <p class="mb-0">Manage sub categories</p>
                         </div>
                     </div>
                 </div>
+
                 <!-- Column -->
-                <div class="col-md-6 col-lg-2 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-danger text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-border-outside"></i></h1>
-                            <h6 class="text-white">Tables</h6>
+                <div class="col-md-6 col-lg-3 col-xlg-3">
+                    <div class="card shadow-sm" style="border-radius: 15px; border: none; overflow: hidden; cursor: pointer; transition: all 0.3s;">
+                        <div class="box text-center p-4" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white;">
+                            <h1 class="font-light mb-3"><i class="mdi mdi-cog"></i></h1>
+                            <h5>Settings</h5>
+                            <p class="mb-0">Manage settings</p>
                         </div>
                     </div>
                 </div>
-                <!-- Column -->
-                <div class="col-md-6 col-lg-2 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-info text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-arrow-all"></i></h1>
-                            <h6 class="text-white">Full Width</h6>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
-                <!-- Column -->
-                <div class="col-md-6 col-lg-4 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-danger text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-receipt"></i></h1>
-                            <h6 class="text-white">Forms</h6>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
-                <div class="col-md-6 col-lg-2 col-xlg-3">
-                    <div class="card card-hover">
-                        <div class="box bg-info text-center">
-                            <h1 class="font-light text-white"><i class="mdi mdi-relative-scale"></i></h1>
-                            <h6 class="text-white">Buttons</h6>
-                        </div>
-                    </div>
-                </div>
-                <!-- Column -->
-                <div class="col-md-6 col-lg-2 col-xlg-3">
+            </div>
                     <div class="card card-hover">
                         <div class="box bg-cyan text-center">
                             <h1 class="font-light text-white"><i class="mdi mdi-pencil"></i></h1>

@@ -52,7 +52,7 @@ const insertAdmin = async (req, res) => {
         console.log(req.body);
         console.log(req.file);
 
-        const { fname, lname, email, password, phone } = req.body;
+        const { fname, lname, email, password, contact, gender, city, hobby, about } = req.body;
 
         let profile_image = "";
         if (req.file) {
@@ -64,7 +64,11 @@ const insertAdmin = async (req, res) => {
             lname,
             email,
             password,
-            phone,
+            contact,
+            gender,
+            city,
+            hobby: hobby || [],
+            about,
             profile_image
         });
 
@@ -134,7 +138,7 @@ const updateAdmin = async (req, res) => {
         console.log(req.body);
         console.log(req.file);
 
-        const { fname, lname, email, password, phone } = req.body;
+        const { fname, lname, email, password, contact, gender, city, hobby, about } = req.body;
 
         const admin = await Admin.findById(adminId);
         if (!admin) {
@@ -159,7 +163,11 @@ const updateAdmin = async (req, res) => {
             lname,
             email,
             password,
-            phone,
+            contact,
+            gender,
+            city,
+            hobby: hobby || [],
+            about,
             profile_image
         });
 
@@ -230,34 +238,28 @@ const verifyEmail = async (req, res) => {
         console.log("OTP", otp);
 
         // Send OTP via email
-        const transporter = nodemailer.createTransporter({
+        const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'your-email@gmail.com',
-                pass: 'your-password'
+                user: 'mehulagarwal2302@gmail.com',
+                pass: 'wpfykzljmhcprvhj'
             }
         });
 
         const mailOptions = {
-            from: 'your-email@gmail.com',
+            from: 'mehulagarwal2302@gmail.com',
             to: email,
             subject: 'OTP for Password Reset',
             text: `Your OTP is ${otp}`
         };
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log("Error sending email", error);
-                req.flash('error', 'Error sending OTP');
-                return res.redirect('/');
-            } else {
-                console.log('Email sent: ' + info.response);
-                req.session.otp = otp;
-                req.session.email = email;
-                req.flash('success', 'OTP sent to your email');
-                return res.redirect('/otp-page');
-            }
-        });
+        await transporter.sendMail(mailOptions);
+        
+        req.session.otp = otp;
+        req.session.email = email;
+        req.flash('success', 'OTP sent to your email');
+        return res.redirect('/otp-page');
+
     } catch (err) {
         console.log("Error verifying email", err);
         req.flash('error', 'Error Verifying Email');
@@ -271,10 +273,10 @@ const OTPPage = (req, res) => {
 
 const OTPVerify = (req, res) => {
     try {
-        const { otp } = req.body;
-        console.log("OTP Verify", otp);
+        const { adminOTP } = req.body;
+        console.log("OTP Verify", adminOTP);
 
-        if (req.session.otp == otp) {
+        if (req.session.otp == adminOTP) {
             req.flash('success', 'OTP Verified');
             return res.redirect('/newPasswordPage');
         } else {
@@ -294,10 +296,10 @@ const newPasswordPage = (req, res) => {
 
 const changeNewPassword = async (req, res) => {
     try {
-        const { newPassword, confirmPassword } = req.body;
+        const { new_password, conform_password } = req.body;
         console.log("Change New Password", req.body);
 
-        if (newPassword !== confirmPassword) {
+        if (new_password !== conform_password) {
             req.flash('error', 'New Password and Confirm Password do not match');
             return res.redirect('/newPasswordPage');
         }
@@ -309,7 +311,7 @@ const changeNewPassword = async (req, res) => {
         }
 
         await Admin.findByIdAndUpdate(admin.id, {
-            password: newPassword
+            password: new_password
         });
 
         req.flash('success', 'Password Changed Successfully');

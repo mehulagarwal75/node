@@ -1,37 +1,65 @@
 <%- include('header') %>
 <div class="page-wrapper">
     <div class="container-fluid">
-        <div class="card shadow-sm" style="border-radius: 15px;">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="page-title"><i class="mdi mdi-account-multiple"></i> Manage Administrators</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-lg" style="border-radius: 15px; border: none;">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h4 class="card-title">Active Administrators</h4>
-                    <a href="/addAdminPage" class="btn btn-success rounded-pill">+ Add New</a>
+                    <h5 class="card-title mb-0" style="color: #333; font-weight: 600;">Active Administrators</h5>
+                    <a href="/addAdminPage" class="btn text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px;"><i class="mdi mdi-plus"></i> Add New</a>
                 </div>
+                <hr>
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="bg-dark text-white">
+                    <table class="table table-hover align-middle table-sm">
+                        <thead style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
                             <tr>
                                 <th>Photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Role</th>
-                                <th>Actions</th>
+                                <th>Contact</th>
+                                <th>Gender</th>
+                                <th>City</th>
+                                <th>Hobby</th>
+                                <th>About</th>
+                                <th style="width: 100px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% admins.forEach((data) => { %>
-                            <tr>
+                            <tr style="border-bottom: 1px solid #e9ecef;">
                                 <td>
-                                    <img src="/uploads/admin/<%= data.profile_image %>" class="rounded-circle shadow-sm" width="45" height="45" style="object-fit: cover;">
+                                    <img src="/uploads/admin/<%= data.profile_image %>" class="rounded-circle shadow-sm" width="40" height="40" style="object-fit: cover; border: 2px solid #667eea;">
                                 </td>
-                                <td class="font-bold"><%= data.fname %> <%= data.lname %></td>
-                                <td><%= data.email %></td>
-                                <td><%= data.phone %></td>
-                                <td><span class="badge badge-pill badge-info">Admin</span></td>
+                                <td class="font-weight-bold"><%= data.fname %> <%= data.lname %></td>
+                                <td><small><%= data.email %></small></td>
+                                <td><small><%= data.contact %></small></td>
+                                <td><span ><%= data.gender || 'N/A' %></span></td>
+                                <td><small><%= data.city || 'N/A' %></small></td>
                                 <td>
-                                    <a href="/editAdmin/<%= data.id %>" class="btn btn-sm btn-outline-warning mx-1"><i class="mdi mdi-pencil"></i></a>
-                                    <a href="/deleteAdmin?adminId=<%= data.id %>" class="btn btn-sm btn-outline-danger mx-1" onclick="return confirm('Are you sure?')"><i class="mdi mdi-delete"></i></a>
+                                    <% if(data.hobby && data.hobby.length > 0) { %>
+                                        <% data.hobby.forEach((h) => { %>
+                                            <span class="badge badge-success badge-sm"><%= h %></span>
+                                        <% }) %>
+                                    <% } else { %>
+                                        <small class="text-muted">N/A</small>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <% if(data.about) { %>
+                                        <small title="<%= data.about %>"><%= data.about.substring(0, 25) %>...</small>
+                                    <% } else { %>
+                                        <small class="text-muted">N/A</small>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <a href="/editAdmin/<%= data.id %>" class="btn btn-sm" style="background: #ffc107; color: white; border: none;" title="Edit"><i class="mdi mdi-pencil"></i></a>
+                                    <a href="/deleteAdmin?adminId=<%= data.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')" title="Delete"><i class="mdi mdi-trash-can"></i></a>
                                 </td>
                             </tr>
                             <% }) %>
