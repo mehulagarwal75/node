@@ -42,51 +42,6 @@
 <script src="../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
 <script src="../dist/js/pages/chart/chart-page-init.js"></script>
 
-<script>
-    // Wait for DOM to be ready and toastr to be loaded
-    $(document).ready(function() {
-        if (typeof toastr !== 'undefined') {
-            // Configure Toastr
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": true,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-
-            // Display Success Flash Messages
-             if(locals.flash && locals.flash.success && locals.flash.success.length > 0) { 
-                toastr.success("<%= locals.flash.success %>", "✓ Success");
-             }
-
-            // Display Error Flash Messages
-             if(locals.flash && locals.flash.error && locals.flash.error.length > 0) { 
-                toastr.error("<%= locals.flash.error %>", "✕ Error");
-             }
-
-            // Display Info Flash Messages
-            if(locals.flash && locals.flash.info && locals.flash.info.length > 0) { 
-                toastr.info("<%= locals.flash.info %>", "ℹ Info");
-            } 
-
-            // Display Warning Flash Messages
-            if(locals.flash && locals.flash.warning && locals.flash.warning.length > 0) {
-                toastr.warning("<%= locals.flash.warning %>", "⚠ Warning");
-             } 
-        }
-    });
-</script>
 
 </body>
 

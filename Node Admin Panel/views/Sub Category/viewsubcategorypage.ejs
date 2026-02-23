@@ -1,0 +1,79 @@
+<%- include('../header') %>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="page-title"><i class="mdi mdi-folder-multiple"></i> Manage Sub Categories</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-lg" style="border-radius: 15px; border: none;">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="card-title mb-0" style="color: #333; font-weight: 600;">All Sub Categories</h5>
+                    <a href="/addSubCategoryPage" class="btn text-white" style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); border-radius: 25px;"><i class="mdi mdi-plus"></i> Add New</a>
+                </div>
+                <hr>
+                <% if(typeof success !== 'undefined' && success) { %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success!</strong> <%= success %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if(typeof error !== 'undefined' && error) { %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Error!</strong> <%= error %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle table-sm">
+                        <thead style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); color: white;">
+                            <tr>
+                                <th>Image</th>
+                                <th>Sub Category Name</th>
+                                <th>Parent Category</th>
+                                <th>Description</th>
+                                <th>Created Date</th>
+                                <th style="width: 120px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(subCategories && subCategories.length > 0) { %>
+                                <% subCategories.forEach((data) => { %>
+                                <tr style="border-bottom: 1px solid #e9ecef;">
+                                    <td>
+                                        <% if(data.subCategoryImage) { %>
+                                            <img src="/uploads/admin/<%= data.subCategoryImage %>" class="rounded" width="50" height="50" style="object-fit: cover; border: 2px solid #1e88e5;">
+                                        <% } else { %>
+                                            <span class="badge badge-secondary">No Image</span>
+                                        <% } %>
+                                    </td>
+                                    <td class="font-weight-bold"><%= data.subCategoryName %></td>
+                                    <td><small><%= data.categoryId ? data.categoryId.categoryName : 'N/A' %></small></td>
+                                    <td><small><%= data.subCategoryDescription || 'N/A' %></small></td>
+                                    <td><small><%= new Date(data.createdAt).toLocaleDateString() %></small></td>
+                                    <td>
+                                        <a href="/editSubCategory/<%= data._id %>" class="btn btn-sm btn-primary" title="Edit"><i class="mdi mdi-pencil"></i></a>
+                                        <a href="/deleteSubCategory?subCategoryId=<%= data._id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')" title="Delete"><i class="mdi mdi-delete"></i></a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">No sub categories found</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../footer') %>

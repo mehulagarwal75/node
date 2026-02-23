@@ -1,0 +1,64 @@
+<%- include('../header') %>
+<div class="page-wrapper">
+    <div class="container-fluid">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="page-title"><i class="mdi mdi-folder-plus"></i> Add New Sub Extra Category</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow-lg" style="border-radius: 15px; border: none;">
+                    <div class="card-body p-4">
+                        <h5 class="card-title mb-4" style="color: #333; font-weight: 600;">Add Sub Extra Category Details</h5>
+                        <form action="/insertSubExtraCategory" method="POST" enctype="multipart/form-data">
+                            <div class="form-group mb-4">
+                                <label for="categoryId" class="form-label font-weight-bold">Category <span class="text-danger">*</span></label>
+                                <select class="form-control form-control-lg" id="categoryId" name="categoryId" required onchange="updateSubCategories()">
+                                    <option value="">Select Category</option>
+                                    <% categories.forEach((cat) => { %>
+                                        <option value="<%= cat._id %>"><%= cat.categoryName %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="subCategoryId" class="form-label font-weight-bold">Sub Category <span class="text-danger">*</span></label>
+                                <select class="form-control form-control-lg" id="subCategoryId" name="subCategoryId" required>
+                                    <option value="">Select Sub Category</option>
+                                    <% subCategories.forEach((subCat) => { %>
+                                        <option value="<%= subCat._id %>"><%= subCat.subCategoryName %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="subExtraCategoryName" class="form-label font-weight-bold">Sub Extra Category Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-lg" id="subExtraCategoryName" name="subExtraCategoryName" placeholder="Enter sub extra category name" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="subExtraCategoryDescription" class="form-label font-weight-bold">Description</label>
+                                <textarea class="form-control" id="subExtraCategoryDescription" name="subExtraCategoryDescription" rows="4" placeholder="Enter sub extra category description"></textarea>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="subExtraCategoryImage" class="form-label font-weight-bold">Sub Extra Category Image</label>
+                                <input type="file" class="form-control form-control-lg" id="subExtraCategoryImage" name="subExtraCategoryImage" accept="image/*">
+                                <small class="text-muted">Allowed formats: JPG, PNG, GIF (Max 5MB)</small>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-lg text-white" style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); border-radius: 25px; padding: 10px 40px;"><i class="mdi mdi-check"></i> Add Sub Extra Category</button>
+                                <a href="/viewSubExtraCategoryPage" class="btn btn-lg btn-secondary" style="border-radius: 25px; padding: 10px 40px;"><i class="mdi mdi-close"></i> Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../footer') %>
+<script>
+    function updateSubCategories() {
+        // This can be used for dynamic filtering if needed
+    }
+</script>

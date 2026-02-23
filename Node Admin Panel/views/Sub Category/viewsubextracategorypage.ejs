@@ -4,15 +4,15 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="page-title"><i class="mdi mdi-folder-multiple"></i> Manage Categories</h3>
+                    <h3 class="page-title"><i class="mdi mdi-folder-multiple"></i> Manage Sub Extra Categories</h3>
                 </div>
             </div>
         </div>
         <div class="card shadow-lg" style="border-radius: 15px; border: none;">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title mb-0" style="color: #333; font-weight: 600;">All Categories</h5>
-                    <a href="/addCategoryPage" class="btn text-white" style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); border-radius: 25px;"><i class="mdi mdi-plus"></i> Add New Category</a>
+                    <h5 class="card-title mb-0" style="color: #333; font-weight: 600;">All Sub Extra Categories</h5>
+                    <a href="/addSubExtraCategoryPage" class="btn text-white" style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); border-radius: 25px;"><i class="mdi mdi-plus"></i> Add New</a>
                 </div>
                 <hr>
                 <% if(typeof success !== 'undefined' && success) { %>
@@ -36,35 +36,37 @@
                         <thead style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); color: white;">
                             <tr>
                                 <th>Image</th>
-                                <th>Category Name</th>
+                                <th>Sub Extra Category Name</th>
+                                <th>Category</th>
+                                <th>Sub Category</th>
                                 <th>Description</th>
-                                <th>Created Date</th>
                                 <th style="width: 120px;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% if(categories && categories.length > 0) { %>
-                                <% categories.forEach((data) => { %>
+                            <% if(subExtraCategories && subExtraCategories.length > 0) { %>
+                                <% subExtraCategories.forEach((data) => { %>
                                 <tr style="border-bottom: 1px solid #e9ecef;">
                                     <td>
-                                        <% if(data.categoryImage) { %>
-                                            <img src="/uploads/admin/<%= data.categoryImage %>" class="rounded" width="50" height="50" style="object-fit: cover; border: 2px solid #1e88e5;">
+                                        <% if(data.subExtraCategoryImage) { %>
+                                            <img src="/uploads/admin/<%= data.subExtraCategoryImage %>" class="rounded" width="50" height="50" style="object-fit: cover; border: 2px solid #1e88e5;">
                                         <% } else { %>
                                             <span class="badge badge-secondary">No Image</span>
                                         <% } %>
                                     </td>
-                                    <td class="font-weight-bold"><%= data.categoryName %></td>
-                                    <td><small><%= data.categoryDescription || 'N/A' %></small></td>
-                                    <td><small><%= new Date(data.createdAt).toLocaleDateString() %></small></td>
+                                    <td class="font-weight-bold"><%= data.subExtraCategoryName %></td>
+                                    <td><small><%= data.categoryId ? data.categoryId.categoryName : 'N/A' %></small></td>
+                                    <td><small><%= data.subCategoryId ? data.subCategoryId.subCategoryName : 'N/A' %></small></td>
+                                    <td><small><%= data.subExtraCategoryDescription || 'N/A' %></small></td>
                                     <td>
-                                        <a href="/editCategory/<%= data._id %>" class="btn btn-sm btn-primary" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                                        <a href="/deleteCategory?categoryId=<%= data._id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')" title="Delete"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/editSubExtraCategory/<%= data._id %>" class="btn btn-sm btn-primary" title="Edit"><i class="mdi mdi-pencil"></i></a>
+                                        <a href="/deleteSubExtraCategory?subExtraCategoryId=<%= data._id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')" title="Delete"><i class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
                                 <% }) %>
                             <% } else { %>
                                 <tr>
-                                    <td colspan="5" class="text-center text-muted py-4">No categories found</td>
+                                    <td colspan="6" class="text-center text-muted py-4">No sub extra categories found</td>
                                 </tr>
                             <% } %>
                         </tbody>

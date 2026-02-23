@@ -14,7 +14,7 @@
                 <div class="card shadow-lg" style="border-radius: 20px; border: none;">
                     <div class="card-body p-5 text-center">
                         <div class="mb-4">
-                            <img src="/uploads/admin/<%= admin.profile_image %>" alt="user" class="rounded-circle shadow-sm" width="140" height="140" style="object-fit: cover; border: 4px solid #667eea;">
+                            <img src="/uploads/admin/<%= admin.profile_image %>" alt="user" class="rounded-circle shadow-sm" width="140" height="140" style="object-fit: cover; border: 4px solid #1e88e5;">
                         </div>
 
                         <h3 class="m-b-0 text-dark font-weight-bold mb-1">
@@ -26,19 +26,19 @@
 
                         <div class="text-left mt-4 mb-4">
                             <div class="mb-3 d-flex align-items-center">
-                                <i class="mdi mdi-phone" style="color: #667eea; font-size: 1.2rem; width: 30px;"></i>
+                                <i class="mdi mdi-phone" style="color: #1e88e5; font-size: 1.2rem; width: 30px;"></i>
                                 <div>
                                     <strong>Contact:</strong> <span><%= admin.contact%></span>
                                 </div>
                             </div>
                             <div class="mb-3 d-flex align-items-center">
-                                <i class="mdi mdi-gender-male-female" style="color: #667eea; font-size: 1.2rem; width: 30px;"></i>
+                                <i class="mdi mdi-gender-male-female" style="color: #1e88e5; font-size: 1.2rem; width: 30px;"></i>
                                 <div>
                                     <strong>Gender:</strong> <span><%= admin.gender %></span>
                                 </div>
                             </div>
                             <div class="mb-3 d-flex align-items-start">
-                                <i class="mdi mdi-gamepad-variant" style="color: #667eea; font-size: 1.2rem; width: 30px; margin-top: 5px;"></i>
+                                <i class="mdi mdi-gamepad-variant" style="color: #1e88e5; font-size: 1.2rem; width: 30px; margin-top: 5px;"></i>
                                 <div>
                                     <strong>Hobby:</strong>
                                     <% if(admin.hobby && admin.hobby.length > 0) { %>
@@ -53,13 +53,13 @@
                                 </div>
                             </div>
                             <div class="mb-3 d-flex align-items-center">
-                                <i class="mdi mdi-map-marker" style="color: #667eea; font-size: 1.2rem; width: 30px;"></i>
+                                <i class="mdi mdi-map-marker" style="color: #1e88e5; font-size: 1.2rem; width: 30px;"></i>
                                 <div>
                                     <strong>City:</strong> <span><%= admin.city %></span>
                                 </div>
                             </div>
                             <div class="mb-3 d-flex align-items-start">
-                                <i class="mdi mdi-information-outline" style="color: #667eea; font-size: 1.2rem; width: 30px; margin-top: 5px;"></i>
+                                <i class="mdi mdi-information-outline" style="color: #1e88e5; font-size: 1.2rem; width: 30px; margin-top: 5px;"></i>
                                 <div>
                                     <strong>About:</strong>
                                     <p class="text-muted mb-0"><%= admin.about %></p>
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="mt-4 d-grid gap-2">
-                            <a href="/editAdmin/<%= admin.id %>" class="btn text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px; padding: 10px 20px;">
+                            <a href="/editAdmin/<%= admin.id %>" class="btn text-white" style="background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%); border-radius: 25px; padding: 10px 20px;">
                                 <i class="mdi mdi-pencil"></i> Edit Profile
                             </a>
                             <a href="/change-password" class="btn btn-outline-secondary" style="border-radius: 25px; padding: 10px 20px;">

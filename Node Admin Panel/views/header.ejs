@@ -15,12 +15,24 @@
     <link href="../assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet">
+    
+    <!-- Admin overrides -->
+    <link href="../css/admin.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.26.18/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 
 <body>
+    <script>
+        (function(){
+            var p = window.location.pathname.toLowerCase();
+            var adminPatterns = ['/dashboard','/addadminpage','/viewadminpage','/addcategorypage','/viewcategorypage','/addsubcategorypage','/viewsubcategorypage','/addsubextracategorypage','/viewsubextracategorypage','/addproductpage','/viewproductpage','/profile'];
+            for(var i=0;i<adminPatterns.length;i++){
+                if(p.indexOf(adminPatterns[i])!==-1){ document.body.classList.add('admin'); break; }
+            }
+        })();
+    </script>
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -256,35 +268,69 @@
                         </li>
                         <!-- Category -->
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
-                                    class="hide-menu">category </span></a>
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-folder"></i><span
+                                    class="hide-menu">Category </span></a>
 
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/category/addcategorypage" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Add category
+                                <li class="sidebar-item"><a href="/addCategoryPage" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Add Category
                                         </span></a></li>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/category/viewcategorypage" aria-expanded="false"><i
+                                        href="/viewCategoryPage" aria-expanded="false"><i
                                             class="mdi mdi-border-inside"></i><span class="hide-menu">View
-                                            category</span></a>
+                                            Category</span></a>
                                 </li>
                             </ul>
                         </li>
                         <!-- SubCategory -->
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span
-                                    class="hide-menu">Sub category </span></a>
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-folder-multiple"></i><span
+                                    class="hide-menu">Sub Category </span></a>
 
                             <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item"><a href="/SubCategory/addsubcategorypage" class="sidebar-link"><i
-                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Add sub category
+                                <li class="sidebar-item"><a href="/addSubCategoryPage" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Add Sub Category
                                         </span></a></li>
 
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/subcategory/viewwsubcategorrypage" aria-expanded="false"><i
-                                            class="mdi mdi-border-inside"></i><span class="hide-menu">View sub 
-                                            category</span></a>
+                                        href="/viewSubCategoryPage" aria-expanded="false"><i
+                                            class="mdi mdi-border-inside"></i><span class="hide-menu">View Sub 
+                                            Category</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Sub Extra Category -->
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-folder-multiple"></i><span
+                                    class="hide-menu">Sub Extra Category </span></a>
+
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="/addSubExtraCategoryPage" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Add Sub Extra Category
+                                        </span></a></li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/viewSubExtraCategoryPage" aria-expanded="false"><i
+                                            class="mdi mdi-border-inside"></i><span class="hide-menu">View Sub Extra 
+                                            Category</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Product -->
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-package"></i><span
+                                    class="hide-menu">Product </span></a>
+
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item"><a href="/addProductPage" class="sidebar-link"><i
+                                            class="mdi mdi-note-outline"></i><span class="hide-menu"> Add Product
+                                        </span></a></li>
+
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/viewProductPage" aria-expanded="false"><i
+                                            class="mdi mdi-border-inside"></i><span class="hide-menu">View 
+                                            Product</span></a>
                                 </li>
                             </ul>
                         </li>
