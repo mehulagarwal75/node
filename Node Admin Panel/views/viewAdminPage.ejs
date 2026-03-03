@@ -59,7 +59,7 @@
                                 </td>
                                 <td>
                                     <a href="/editAdmin/<%= data.id %>" class="btn btn-sm" style="background: #ffc107; color: white; border: none;" title="Edit"><i class="mdi mdi-pencil"></i></a>
-                                    <a href="/deleteAdmin?adminId=<%= data.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')" title="Delete"><i class="mdi mdi-trash-can"></i></a>
+                                    <a href="/deleteAdmin?adminId=<%= data.id %>" class="btn btn-sm btn-danger" onclick="return confirm('<%= data.fname %> <%= data.lname %> Are you sure?')" title="Delete"><i class="fa fa-ban" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                             <% }) %>

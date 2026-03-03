@@ -1,4 +1,8 @@
 const Admin = require('../model/admin.model');
+const Category = require('../model/category.model');
+const SubCategory = require('../model/subcategory.model');
+const SubExtraCategory = require('../model/subextracategory.model');
+const Product = require('../model/product.model');
 const fs = require('fs');
 const path = require('path');
 const nodemailer = require('nodemailer');
@@ -26,8 +30,31 @@ const logout = (req, res) => {
     });
 }
 
-const dashboardPage = (req, res) => {
-    return res.render('dashboard');
+const dashboardPage = async (req, res) => {
+    try {
+        const adminCount = await Admin.countDocuments();
+        const categoryCount = await Category.countDocuments();
+        const subCategoryCount = await SubCategory.countDocuments();
+        const subExtraCategoryCount = await SubExtraCategory.countDocuments();
+        const productCount = await Product.countDocuments();
+        
+        return res.render('dashboard', {
+            adminCount,
+            categoryCount,
+            subCategoryCount,
+            subExtraCategoryCount,
+            productCount
+        });
+    } catch (err) {
+        console.log("Error fetching dashboard data", err);
+        return res.render('dashboard', {
+            adminCount: 0,
+            categoryCount: 0,
+            subCategoryCount: 0,
+            subExtraCategoryCount: 0,
+            productCount: 0
+        });
+    }
 }
 
 const addAdminPage = (req, res) => {
